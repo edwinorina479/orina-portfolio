@@ -1,0 +1,16 @@
+{
+  "groups": [
+    {
+      "label": "Frontend",
+      "items": ["JavaScript (ES2023)", "TypeScript", "React", "Vue", "CSS / Sass", "Accessibility (WCAG)"]
+    },
+    {
+      "label": "Backend",
+      "items": ["Node.js", "Express", "REST & GraphQL APIs", "PostgreSQL", "MongoDB", "Redis"]
+    },
+    {
+      "label": "Tooling",
+      "items": ["Docker", "CI/CD", "Vite", "Testing (Jest, Playwright)", "Git", "Linux"]
+    }
+  ]
+}

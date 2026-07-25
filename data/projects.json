@@ -1,0 +1,46 @@
+[
+  {
+    "id": "tide-log",
+    "title": "Tide Log",
+    "year": "2026",
+    "tag": "Product design · Frontend",
+    "summary": "A minimal habit tracker that visualizes streaks as a rising and falling tide line instead of a grid of dots.",
+    "stack": ["React", "D3", "Node.js"],
+    "link": "https://example.com/tide-log",
+    "repo": "https://github.com/orina/tide-log",
+    "image": "/assets/project-tide-log.svg"
+  },
+  {
+    "id": "portside",
+    "title": "Portside",
+    "year": "2025",
+    "tag": "Full-stack",
+    "summary": "An inventory and dispatch dashboard for a small logistics team, built to replace a shared spreadsheet.",
+    "stack": ["Express", "PostgreSQL", "Vue"],
+    "link": "https://example.com/portside",
+    "repo": "https://github.com/orina/portside",
+    "image": "/assets/project-portside.svg"
+  },
+  {
+    "id": "driftwood",
+    "title": "Driftwood CMS",
+    "year": "2025",
+    "tag": "Developer tools",
+    "summary": "A flat-file CMS for small studio sites, no database required — content lives in versioned markdown.",
+    "stack": ["Node.js", "Markdown", "SQLite"],
+    "link": "https://example.com/driftwood",
+    "repo": "https://github.com/orina/driftwood",
+    "image": "/assets/project-driftwood.svg"
+  },
+  {
+    "id": "salt-notes",
+    "title": "Salt Notes",
+    "year": "2024",
+    "tag": "Mobile · Offline-first",
+    "summary": "A journaling app built for divers and sailors, works fully offline and syncs when back in range.",
+    "stack": ["React Native", "SQLite", "Expo"],
+    "link": "https://example.com/salt-notes",
+    "repo": "https://github.com/orina/salt-notes",
+    "image": "/assets/project-salt-notes.svg"
+  }
+]
