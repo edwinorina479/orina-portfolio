@@ -17,16 +17,49 @@
 
 <header class="nav" id="nav">
   <a href="#top" class="nav__brand">Orina</a>
-  <nav class="nav__links">
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact" class="nav__cta">Say hello</a>
-  </nav>
+
+  <nav class="nav__links" id="navLinks"><!-- populated by js/main.js from navItems --></nav>
+
   <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </header>
+
+<!-- Shared dropdown content, cloned into every nav item by main.js -->
+<template id="navDropdownTemplate">
+  <div class="dropdown" role="menu">
+    <div class="dropdown__auth">
+      <a href="#" class="dropdown__auth-btn dropdown__auth-btn--ghost" data-auth="signin" role="menuitem">Sign in</a>
+      <a href="#" class="dropdown__auth-btn dropdown__auth-btn--solid" data-auth="signup" role="menuitem">Sign up</a>
+    </div>
+    <div class="dropdown__divider"></div>
+    <div class="dropdown__socials">
+      <a href="https://instagram.com/orina" target="_blank" rel="noopener" aria-label="Instagram" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+      </a>
+      <a href="https://facebook.com/orina" target="_blank" rel="noopener" aria-label="Facebook" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 8.5h2V5h-2c-2.2 0-3.5 1.4-3.5 3.5V11H9.5v3H11.5v6H14.5v-6H17l.5-3H14.5V8.7c0-.6.3-1.2 1.2-1.2Z"/></svg>
+      </a>
+      <a href="https://twitter.com/orina" target="_blank" rel="noopener" aria-label="Twitter / X" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l7.5 9.6L4.4 20H6l6.2-5.6L17 20h3l-7.9-10L19.6 4H18l-5.7 5.1L7.9 4Z"/></svg>
+      </a>
+      <a href="https://wa.me/000000000000" target="_blank" rel="noopener" aria-label="WhatsApp" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 19l1.1-3.3A7.5 7.5 0 1 1 10 18.6Z"/><path d="M9 10.5c0 3 2.5 5.5 5.5 5.5"/></svg>
+      </a>
+    </div>
+  </div>
+</template>
+
+<!-- Shared sign in / sign up modal -->
+<div class="auth-modal" id="authModal" hidden>
+  <div class="auth-modal__backdrop" data-close-modal></div>
+  <div class="auth-modal__panel" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+    <button class="auth-modal__close" data-close-modal aria-label="Close">×</button>
+    <h3 id="authModalTitle">Sign in</h3>
+    <p>Accounts aren't set up on this site yet — reach out through Support and I'll get you sorted.</p>
+    <a href="mailto:mokuaedwin63@gmail.com" class="btn btn--primary">Email Support</a>
+  </div>
+</div>
 
 <main id="top">
 
@@ -94,6 +127,57 @@
         <span class="fact__num">4</span>
         <span class="fact__label">time zones I've worked across</span>
       </div>
+    </div>
+  </section>
+
+  <!-- OUR FOUNDATION -->
+  <section class="section section--foundation" id="foundation">
+    <div class="section__head">
+      <p class="eyebrow">Our Foundation</p>
+      <h2>Giving back, a little at a time.</h2>
+      <p class="section__sub">
+        A share of every project I take on goes toward funding coding scholarships for
+        students who wouldn't otherwise have access to a laptop or a mentor.
+      </p>
+    </div>
+    <div class="foundation__stats">
+      <div class="fact">
+        <span class="fact__num">12</span>
+        <span class="fact__label">scholarships funded so far</span>
+      </div>
+      <div class="fact">
+        <span class="fact__num">3</span>
+        <span class="fact__label">partner schools</span>
+      </div>
+      <div class="fact">
+        <span class="fact__num">1%</span>
+        <span class="fact__label">of every project fee donated</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="section" id="news">
+    <div class="section__head">
+      <p class="eyebrow">News</p>
+      <h2>Recent updates</h2>
+    </div>
+    <div class="news__list">
+      <article class="news__item">
+        <span class="news__date">Jul 2026</span>
+        <h3>Orina portfolio, rebuilt</h3>
+        <p>Rebuilt this site as a full-stack app — Express backend, plain JS frontend, no framework overhead.</p>
+      </article>
+      <article class="news__item">
+        <span class="news__date">Mar 2026</span>
+        <h3>Shipped Tide Log</h3>
+        <p>Launched a small habit tracker that visualizes streaks as a tide line instead of a dot grid.</p>
+      </article>
+      <article class="news__item">
+        <span class="news__date">Nov 2025</span>
+        <h3>Foundation's third partner school</h3>
+        <p>Our Foundation began funding scholarships at a third partner school this term.</p>
+      </article>
     </div>
   </section>
 

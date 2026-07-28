@@ -4,6 +4,91 @@
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
+/* ---------- Build nav items with dropdowns ---------- */
+const navItems = [
+  { label: "Home", href: "#top" },
+  { label: "Companies", href: "#work" },
+  { label: "About Us", href: "#about" },
+  { label: "Our Foundation", href: "#foundation" },
+  { label: "News", href: "#news" },
+  { label: "Support", href: "mailto:mokuaedwin63@gmail.com" },
+];
+
+const navLinksContainer = document.getElementById("navLinks");
+const dropdownTemplate = document.getElementById("navDropdownTemplate");
+
+navItems.forEach((item, i) => {
+  const wrapper = document.createElement("div");
+  wrapper.className = "nav__item";
+
+  const link = document.createElement("a");
+  link.className = "nav__link";
+  link.href = item.href;
+  link.textContent = item.label;
+  if (item.external) {
+    link.target = "_blank";
+    link.rel = "noopener";
+  }
+
+  const caret = document.createElement("button");
+  caret.className = "nav__caret";
+  caret.type = "button";
+  caret.setAttribute("aria-expanded", "false");
+  caret.setAttribute("aria-label", `Toggle ${item.label} menu`);
+  caret.textContent = "▾";
+
+  const dropdown = dropdownTemplate.content.cloneNode(true);
+
+  wrapper.appendChild(link);
+  wrapper.appendChild(caret);
+  wrapper.appendChild(dropdown);
+  navLinksContainer.appendChild(wrapper);
+
+  caret.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = wrapper.classList.contains("is-open");
+    closeAllDropdowns();
+    if (!isOpen) {
+      wrapper.classList.add("is-open");
+      caret.setAttribute("aria-expanded", "true");
+    }
+  });
+});
+
+function closeAllDropdowns() {
+  document.querySelectorAll(".nav__item.is-open").forEach((el) => {
+    el.classList.remove("is-open");
+    el.querySelector(".nav__caret")?.setAttribute("aria-expanded", "false");
+  });
+}
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".nav__item")) closeAllDropdowns();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeAllDropdowns();
+});
+
+/* ---------- Auth modal (Sign in / Sign up) ---------- */
+const authModal = document.getElementById("authModal");
+const authModalTitle = document.getElementById("authModalTitle");
+
+document.addEventListener("click", (e) => {
+  const authTrigger = e.target.closest("[data-auth]");
+  if (authTrigger) {
+    e.preventDefault();
+    authModalTitle.textContent = authTrigger.dataset.auth === "signup" ? "Sign up" : "Sign in";
+    authModal.hidden = false;
+    closeAllDropdowns();
+  }
+  if (e.target.closest("[data-close-modal]")) {
+    authModal.hidden = true;
+  }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") authModal.hidden = true;
+});
+
 /* ---------- Nav: scrolled state + mobile toggle ---------- */
 const nav = document.getElementById("nav");
 const navToggle = document.getElementById("navToggle");

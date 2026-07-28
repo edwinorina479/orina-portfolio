@@ -135,6 +135,127 @@ button { font-family: inherit; cursor: pointer; }
 }
 .nav__toggle span { width: 22px; height: 2px; background: var(--foam); border-radius: 2px; }
 
+/* ---- Nav dropdown items ---- */
+.nav__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.nav__link {
+  color: var(--foam-dim);
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+.nav__link:hover { color: var(--foam); }
+
+.nav__caret {
+  background: none;
+  border: none;
+  color: var(--mist);
+  font-size: 0.7rem;
+  padding: 0.2rem;
+  line-height: 1;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.nav__caret:hover { color: var(--tide-bright); }
+.nav__item.is-open .nav__caret { transform: rotate(180deg); color: var(--tide-bright); }
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 210px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.9rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  z-index: 80;
+}
+.nav__item.is-open .dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown__auth {
+  display: flex;
+  gap: 0.5rem;
+}
+.dropdown__auth-btn {
+  flex: 1;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+.dropdown__auth-btn--ghost { color: var(--foam); }
+.dropdown__auth-btn--ghost:hover { border-color: var(--tide-bright); }
+.dropdown__auth-btn--solid { background: var(--tide-bright); color: var(--ink); border-color: transparent; }
+.dropdown__auth-btn--solid:hover { background: var(--foam); }
+
+.dropdown__divider { height: 1px; background: var(--line); margin: 0.8rem 0; }
+
+.dropdown__socials {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.2rem;
+}
+.dropdown__socials a {
+  color: var(--mist);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.dropdown__socials a:hover { color: var(--sand); transform: translateY(-2px); }
+.dropdown__socials svg { width: 20px; height: 20px; }
+
+/* ---- Auth modal ---- */
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-modal[hidden] { display: none; }
+.auth-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 16, 18, 0.75);
+  backdrop-filter: blur(2px);
+}
+.auth-modal__panel {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 2rem;
+  max-width: 380px;
+  width: calc(100% - 2.5rem);
+  text-align: left;
+}
+.auth-modal__panel h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
+.auth-modal__panel p { color: var(--foam-dim); margin-bottom: 1.4rem; }
+.auth-modal__close {
+  position: absolute;
+  top: 0.8rem; right: 0.9rem;
+  background: none;
+  border: none;
+  color: var(--mist);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.auth-modal__close:hover { color: var(--foam); }
+
 /* ============ Hero ============ */
 .hero {
   min-height: 92vh;
@@ -306,6 +427,34 @@ button { font-family: inherit; cursor: pointer; }
 .fact__num { font-family: var(--font-display); font-size: 2.2rem; color: var(--tide-bright); }
 .fact__label { color: var(--mist); font-size: 0.88rem; }
 
+/* ============ Foundation ============ */
+.foundation__stats {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+/* ============ News ============ */
+.news__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  max-width: 640px;
+}
+.news__item {
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--line);
+}
+.news__item:last-child { border-bottom: none; }
+.news__date {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--tide-bright);
+  letter-spacing: 0.04em;
+}
+.news__item h3 { font-size: 1.15rem; margin: 0.4rem 0 0.4rem; }
+.news__item p { color: var(--foam-dim); font-size: 0.95rem; }
+
 /* ============ Skills ============ */
 .skills {
   display: grid;
@@ -398,4 +547,33 @@ button { font-family: inherit; cursor: pointer; }
   }
   .nav__links.is-open { transform: translateX(0); }
   .nav__toggle { display: flex; }
+
+  .nav__item {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .nav__item > .nav__link { flex: 1; }
+  .nav__caret { align-self: flex-start; }
+
+  /* On mobile the dropdown behaves like an inline accordion, not a floating panel */
+  .dropdown {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-height: 0;
+    padding: 0 0.9rem;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    overflow: hidden;
+    box-shadow: none;
+    transition: max-height 0.25s ease, padding 0.25s ease;
+  }
+  .nav__item.is-open .dropdown {
+    max-height: 260px;
+    padding: 0.9rem;
+    margin-top: 0.5rem;
+    transform: none;
+  }
 }
